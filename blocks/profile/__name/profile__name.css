@@ -3,5 +3,12 @@
     font-size: 42px;
     line-height: 48px;
     color: #FFFFFF;
-   margin: 0;
+    margin: 0;
+    grid-area:profile__name;
+}
+@media (max-width: 450px) {
+    .profile__name {
+        font-size: 27px;
+        line-height: 32.68px;
+    }
 }

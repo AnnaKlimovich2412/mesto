@@ -2,4 +2,13 @@
     width: 150px;
     height: 50px;
     border: 2px solid #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 900px) {
+    .profile__addButton {
+        width: 282px;
+        margin-top: 36px;
+    }
 }

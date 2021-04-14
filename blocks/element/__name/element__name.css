@@ -1,0 +1,7 @@
+.element__name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 8.9% 5.3% 11% 7.4%;
+}
