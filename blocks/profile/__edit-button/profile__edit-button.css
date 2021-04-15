@@ -7,3 +7,7 @@
     justify-content: center;
     grid-area: profile__edit-button;
 }
+
+.profile__edit-button:hover {
+    opacity: 0.6;
+}
