@@ -6,6 +6,8 @@
     margin-top: -373px;
     background-size: cover;
     margin-left: 430px;
+    background-color: transparent;
+    border: transparent;
 }
 @media (max-width: 505px) {
     .popup__close-button {
