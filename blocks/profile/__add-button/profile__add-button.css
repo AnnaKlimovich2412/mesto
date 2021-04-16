@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     background-color: transparent;
+    cursor: pointer;
 }
 @media (max-width: 900px) {
     .profile__addButton {

@@ -10,6 +10,7 @@
     line-height: 22px;
     border: transparent;
     width: 358px;
+    cursor: pointer;
 }
 @media (max-width: 505px) {
     .popup__save-button {
