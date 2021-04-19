@@ -5,8 +5,10 @@
     line-height: 17px;
     color: #000000;
     margin: 0 36px 0;
+    border:none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     padding-bottom: 11px;
+    width: 82.27%;
 }
 @media (max-width: 505px) {
     .popup__field-profession {
