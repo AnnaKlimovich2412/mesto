@@ -1,6 +1,6 @@
 .element__like {
   border: transparent;
-  background-image: url("../../../images/LikeDisabled.svg");
+  background-image: url("../../../images/like_disabled.svg");
   width: 22px;
   height: 19px;
   background-color: transparent;
