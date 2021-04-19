@@ -1,14 +1,14 @@
 .elements {
-    display: grid;
-    grid-template-columns:repeat(auto-fit, minmax(282px, 1fr));;
-    margin: 50px auto 66px;
-    grid-column-gap: 17px;
-    grid-row-gap: 20px;
-    width: 100%;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(282px, 1fr));;
+  margin: 50px auto 66px;
+  grid-column-gap: 17px;
+  grid-row-gap: 20px;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-    .elements {
-        margin: 36px auto 48px;
-    }
+  .elements {
+    margin: 36px auto 48px;
+  }
 }

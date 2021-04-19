@@ -1,19 +1,21 @@
 .profile__profession {
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    color: #FFFFFF;
-    margin: 0;
-    grid-area: profile__profession;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  margin: 0;
+  grid-area: profile__profession;
 }
-@media (max-width: 900px) {
-    .profile__profession {
-        text-align: center;
-    }
+
+@media (max-width: 983px) {
+  .profile__profession {
+    text-align: center;
+  }
 }
+
 @media (max-width: 450px) {
-    .profile__profession {
-        font-size: 14px;
-        line-height: 16.94px;
-    }
+  .profile__profession {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
 }

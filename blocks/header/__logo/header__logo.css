@@ -1,10 +1,11 @@
 .header__logo {
-    align-self: baseline;
-    margin-bottom: 41px;
+  align-self: baseline;
+  margin-bottom: 41px;
 }
+
 @media (max-width: 768px) {
-    .header__logo {
-        margin: 0 0 31.6px 27px;
-        width: 103px;
-    }
+  .header__logo {
+    margin: 0 0 31.6px 27px;
+    width: 103px;
+  }
 }
