@@ -9,11 +9,12 @@
     cursor: pointer;
     top: -40px;
     left: 430px;
+    padding: 0;
 }
 @media (max-width: 505px) {
     .popup__close-button {
         top: -40px;
-        left: 280px;
+        left: 243px;
     }
 }
 .popup__close-button:hover {

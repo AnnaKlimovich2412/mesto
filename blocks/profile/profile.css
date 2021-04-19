@@ -3,7 +3,6 @@
     grid-template-columns: 1fr 5fr 1fr;
     grid-column-gap: 30px;
     align-items: center;
-    width: 68.8%;
     margin: auto;
 }
 @media (max-width: 900px) {
@@ -12,8 +11,4 @@
         flex-direction: column;
     }
 }
-@media (max-width: 768px) {
-    .profile {
-        width: 88.1%;
-    }
-}
+

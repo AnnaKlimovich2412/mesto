@@ -1,6 +1,10 @@
 .element__like {
     border: transparent;
+    background-image: url("../../../images/likeDisabled.png");
+    width: 22px;
+    height: 19px;
     background-color: transparent;
+    cursor: pointer;
 }
 .element__like:hover{
     opacity: 0.5;
