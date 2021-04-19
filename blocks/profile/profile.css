@@ -8,11 +8,8 @@
 }
 @media (max-width: 900px) {
     .profile {
-        width: 68.8%;
-        margin: auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
     }
 }
 @media (max-width: 768px) {

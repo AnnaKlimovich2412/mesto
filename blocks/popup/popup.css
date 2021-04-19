@@ -2,18 +2,9 @@
     width: 100%;
     height: 100%;
     display: none;
-    flex-direction: column;
     align-items: center;
     background-color: rgba(0,0,0,0.5);
-    padding-top: 195px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
     left: 0;
-}
-@media (max-width: 505px) {
-    .popup {
-        padding-top: 123px;
-    }
+    position: fixed;
+    justify-content: center;
 }
