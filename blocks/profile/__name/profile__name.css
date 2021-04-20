@@ -5,6 +5,10 @@
   color: #FFFFFF;
   margin: 0;
   grid-area: profile__name;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 300px;
 }
 
 @media (max-width: 450px) {
