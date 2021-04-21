@@ -12,16 +12,13 @@ const closePopupButton = document.querySelector('.popup__close-button');
 
 // form fields
 const formElement = document.querySelector('.popup__container');
-const inputName = formElement.querySelector('.popup__field-name');
-const inputProfession = formElement.querySelector('.popup__field_profession');
-
+const inputName = formElement.querySelector('.popup__field_type_name');
+const inputProfession = formElement.querySelector('.popup__field_type_profession');
 
 // event listeners
 openPopupButton.addEventListener("click", openPopup);
 closePopupButton.addEventListener("click", closePopup);
 formElement.addEventListener('submit', formSubmitHandler);
-
-
 
 // open dialog window
 function openPopup() {
