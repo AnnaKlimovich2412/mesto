@@ -4,14 +4,13 @@ const profileProfession = document.querySelector('.profile__profession');
 
 //popUp
 const popup = document.querySelector('.popup');
-const popupContainer = document.querySelector('.popup__container');
 
 //buttons
 const openPopupButton = document.querySelector('.profile__edit-button');
 const closePopupButton = document.querySelector('.popup__close-button');
 
 // form fields
-const formElement = document.querySelector('.popup__container');
+const formElement = document.querySelector('.popup__form');
 const inputName = formElement.querySelector('.popup__field_type_name');
 const inputProfession = formElement.querySelector('.popup__field_type_profession');
 
