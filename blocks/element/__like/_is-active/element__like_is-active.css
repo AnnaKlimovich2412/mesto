@@ -1,0 +1,12 @@
+.element__like_is-active {
+  border: transparent;
+  background-image: url("../../../../images/like_active.svg");
+  width: 22px;
+  height: 19px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.element__like_is-active:hover {
+  opacity: 0.5;
+}
+
