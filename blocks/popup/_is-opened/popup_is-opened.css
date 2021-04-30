@@ -1,3 +1,17 @@
 .popup_is-opened {
-  display: flex;
+  animation: fadeIn;
+  -webkit-animation: fadeIn ;
+  animation-duration: 0.5s;
+  visibility: visible;
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+    transform: rotate3d(1, 0, 0, 5deg);
+  }
+  to{
+    opacity: 1;
+    transform: rotate3d(1, 0, 0, 0deg);
+  }
 }
