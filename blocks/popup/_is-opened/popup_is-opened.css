@@ -1,11 +1,11 @@
 .popup_is-opened {
-  animation: fadeIn;
-  -webkit-animation: fadeIn ;
+  animation: fadein;
+  -webkit-animation: fadein;
   animation-duration: 0.5s;
   visibility: visible;
 }
 
-@keyframes fadeIn {
+@keyframes fadein {
   from{
     opacity: 0;
     transform: rotate3d(1, 0, 0, 5deg);
