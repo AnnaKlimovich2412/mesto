@@ -94,6 +94,7 @@ function formPlaceSubmitHandler(evt){
   })
   elementsContainer.prepend(place);
   elementsContainer.append(popup);
+  formPlace.reset();
   closePopupFunc(closePopupPlaceButton)
 }
 
