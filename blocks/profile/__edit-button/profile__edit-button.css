@@ -9,6 +9,7 @@
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  outline: none;
 }
 
 .profile__edit-button:hover {

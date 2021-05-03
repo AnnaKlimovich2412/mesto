@@ -5,6 +5,7 @@
   height: 19px;
   background-color: transparent;
   cursor: pointer;
+  outline: none;
 }
 .element__like_is-active:hover {
   opacity: 0.5;

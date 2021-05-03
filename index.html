@@ -23,10 +23,10 @@
   <section class="elements" aria-label="Места">
 
   </section>
-  <div class="popup popup_type_edit">
+  <div class="popup popup_type_edit" title="edit-place">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="formElement" class="popup__form">
+      <form name="formElement" class="popup__form popup__form_type_name">
         <input name="name" type="text" class="popup__field popup__field_type_name">
         <input name="profession" type="text" class="popup__field popup__field_type_profession">
         <button type="submit" class="popup__save-button">Сохранить</button>
@@ -34,10 +34,10 @@
       <button type="button" class="popup__close-button"></button>
     </div>
   </div>
-  <div class="popup popup_type_place">
+  <div class="popup popup_type_place" title="add-place">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
-      <form name="formElement" class="popup__form">
+      <form name="formElement" class="popup__form popup__form_type_place">
         <input name="place" type="text" class="popup__field popup__field_type_place" value="Название">
         <input name="link" type="text" class="popup__field popup__field_type_link" value="Ссылка на картинку">
         <button type="submit" class="popup__save-button">Создать</button>
@@ -52,21 +52,21 @@
 </footer>
 
 <template id="place-template">
-    <article class="element">
-      <img class="element__img" src="" alt="">
-      <div class="element__name">
-        <h2 class="element__title"></h2>
-        <button type="button" class="element__like"></button>
-      </div>
-      <button type="button" class="element__delete"></button>
-    </article>
-    <div class="popup popup_type_image">
-      <div class="popup__img-container">
-        <img src="" alt="" class="popup__img">
-        <h2 class="popup__label"></h2>
-        <button type="button" class="popup__close-button"></button>
-      </div>
+  <article class="element">
+    <img class="element__img" src="" alt="">
+    <div class="element__name">
+      <h2 class="element__title"></h2>
+      <button type="button" class="element__like"></button>
     </div>
+    <button type="button" class="element__delete"></button>
+  </article>
+  <div class="popup popup_type_image" title="big-image">
+    <div class="popup__img-container">
+      <img src="" alt="" class="popup__img">
+      <h2 class="popup__label"></h2>
+      <button type="button" class="popup__close-button"></button>
+    </div>
+  </div>
 </template>
 
 <script src="scripts/index.js"></script>
