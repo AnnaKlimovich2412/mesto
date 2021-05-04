@@ -23,37 +23,39 @@
   <section class="elements" aria-label="Места">
 
   </section>
-  <div class="popup popup_type_edit" title="edit-place">
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="formElement" class="popup__form popup__form_type_name">
-        <input name="name" type="text" class="popup__field popup__field_type_name" autocomplete="off">
-        <input name="profession" type="text" class="popup__field popup__field_type_profession" autocomplete="off">
-        <button type="submit" class="popup__save-button">Сохранить</button>
-      </form>
-      <button type="button" class="popup__close-button"></button>
-    </div>
-  </div>
-  <div class="popup popup_type_place" title="add-place">
-    <div class="popup__container">
-      <h2 class="popup__title">Новое место</h2>
-      <form name="formElement" class="popup__form popup__form_type_place">
-        <input name="place" type="text" class="popup__field popup__field_type_place" value="Название"
-               autocomplete="off">
-        <input name="link" type="text" class="popup__field popup__field_type_link" value="Ссылка на картинку"
-               autocomplete="off">
-        <button type="submit" class="popup__save-button">Создать</button>
-      </form>
-      <button type="button" class="popup__close-button"></button>
-    </div>
-  </div>
 
 </main>
+
+<div class="popup popup_type_edit" title="edit-place">
+  <div class="popup__container">
+    <h2 class="popup__title">Редактировать профиль</h2>
+    <form name="formElement" class="popup__form popup__form_type_name">
+      <input name="name" type="text" class="popup__field popup__field_type_name" autocomplete="off" placeholder="Имя">
+      <input name="profession" type="text" class="popup__field popup__field_type_profession" autocomplete="off" placeholder="Вид деятельности">
+      <button type="submit" class="popup__save-button">Сохранить</button>
+    </form>
+    <button type="button" class="popup__close-button"></button>
+  </div>
+</div>
+<div class="popup popup_type_place" title="add-place">
+  <div class="popup__container">
+    <h2 class="popup__title">Новое место</h2>
+    <form name="formElement" class="popup__form popup__form_type_place">
+      <input name="place" type="text" class="popup__field popup__field_type_place" placeholder="Название"
+             autocomplete="off">
+      <input name="link" type="text" class="popup__field popup__field_type_link" placeholder="Ссылка на картинку"
+             autocomplete="off">
+      <button type="submit" class="popup__save-button">Создать</button>
+    </form>
+    <button type="button" class="popup__close-button"></button>
+  </div>
+</div>
 <footer class="footer">
   <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
 </footer>
 
 <template id="place-template">
+<div class="place-template">
   <article class="element">
     <img class="element__img" src="#" alt="">
     <div class="element__name">
@@ -69,8 +71,9 @@
       <button type="button" class="popup__close-button"></button>
     </div>
   </div>
+</div>
 </template>
-
+<script src="scripts/initial-сards.js"></script>
 <script src="scripts/index.js"></script>
 </body>
 </html>
