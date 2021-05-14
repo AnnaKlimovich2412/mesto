@@ -1,3 +1,6 @@
+//page validation
+enableValidation();
+
 // shared
 const placeTemplate = document.querySelector('#place-template').content;
 
@@ -118,6 +121,8 @@ renderInitialCards();
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageLink = popupImage.querySelector('.popup__img');
 const popupImageName = popupImage.querySelector('.popup__label');
+const popupImageContainer = popupImage.querySelector('.popup__container');
+
 
 //popup open
 function openImagePopup(link, name) {
@@ -130,4 +135,11 @@ function openImagePopup(link, name) {
 popupImage.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(popupImage);
 })
+
+popupImageContainer.addEventListener('click', (evt) => {
+  if (evt.target.className !== 'popup__container') {
+    console.log('закрыть')
+  }
+})
+
 
