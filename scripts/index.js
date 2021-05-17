@@ -1,5 +1,12 @@
 //page validation
-enableValidation();
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__field_type_error',
+  inputErrorActive: 'popup__field-error_visible'
+});
 
 // shared
 const placeTemplate = document.querySelector('#place-template').content;
@@ -62,6 +69,7 @@ openPopupPlaceButton.addEventListener("click", () => {
 
 closePopupPlaceButton.addEventListener('click', () => {
   closePopup(popupPlace);
+  formPlace.reset();
 })
 
 // popup form fields
@@ -121,7 +129,9 @@ renderInitialCards();
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageLink = popupImage.querySelector('.popup__img');
 const popupImageName = popupImage.querySelector('.popup__label');
-const popupImageContainer = popupImage.querySelector('.popup__container');
+const popupImageCloseBtn = popupImage.querySelector('.popup__close-button');
+
+//const popupImageContainer = popupImage.querySelector('.popup__container');
 
 
 //popup open
@@ -132,14 +142,14 @@ function openImagePopup(link, name) {
   popupImageName.textContent = name;
 }
 //popup close
-popupImage.querySelector('.popup__close-button').addEventListener('click', () => {
+popupImageCloseBtn.addEventListener('click', () => {
   closePopup(popupImage);
 })
 
-popupImageContainer.addEventListener('click', (evt) => {
-  if (evt.target.className !== 'popup__container') {
-    console.log('закрыть')
-  }
-})
+// popupImageContainer.addEventListener('click', (evt) => {
+//   if (evt.target.className !== 'popup__container') {
+//     console.log('закрыть')
+//   }
+// })
 
 

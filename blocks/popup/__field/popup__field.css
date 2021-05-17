@@ -16,7 +16,6 @@
   outline: none;
 }
 
-
 @media (max-width: 505px) {
   .popup__field {
     margin-left: 22px;
