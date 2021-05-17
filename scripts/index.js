@@ -54,6 +54,13 @@ formEditProfile.addEventListener('submit', (evt) => {
   formEditProfile.reset();
 });
 
+document.addEventListener('keyup', (evt) => {
+  if (evt.key === 'Escape') {
+    let popup = document.querySelector('.popup_is-opened')
+    closePopup(popup);
+  }
+})
+
 /*New Place*/
 
 //popUp
@@ -67,9 +74,13 @@ openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
 });
 
-closePopupPlaceButton.addEventListener('click', () => {
+function closeAndResetPopUp() {
   closePopup(popupPlace);
   formPlace.reset();
+}
+
+closePopupPlaceButton.addEventListener('click', () => {
+  closeAndResetPopUp()
 })
 
 // popup form fields
