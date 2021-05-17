@@ -43,8 +43,8 @@ openEditProfileButton.addEventListener("click", () => {
 });
 
 closeEditProfileButton.addEventListener('click', () => {
-  closePopup(popupProfileEdit)
-})
+  closePopup(popupProfileEdit);
+  })
 
 formEditProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -131,7 +131,6 @@ const popupImageLink = popupImage.querySelector('.popup__img');
 const popupImageName = popupImage.querySelector('.popup__label');
 const popupImageCloseBtn = popupImage.querySelector('.popup__close-button');
 
-//const popupImageContainer = popupImage.querySelector('.popup__container');
 
 
 //popup open
@@ -146,10 +145,10 @@ popupImageCloseBtn.addEventListener('click', () => {
   closePopup(popupImage);
 })
 
-// popupImageContainer.addEventListener('click', (evt) => {
-//   if (evt.target.className !== 'popup__container') {
-//     console.log('закрыть')
-//   }
-// })
-
+//popup closing by clicking on the background
+popupImage.addEventListener('click', (evt) => {
+  if (evt.target !== popupImageLink && evt.target !== popupImageName) {
+    closePopup(popupImage);
+  }
+})
 

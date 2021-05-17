@@ -63,15 +63,6 @@ const setEventListeners = (formElement, config) => {
   toggleButtonState(buttonElement, inputList);
 }
 
-// const enableValidation = ({formSelector, ...restConfig}) => {
-//   //find all forms
-//   const formList = Array.from(document.querySelectorAll(formSelector));
-//     //set listeners
-//   formList.forEach((formElement) => {
-//     setEventListeners(formElement, restConfig);
-//   })
-// };
-
 const enableValidation = (obj) => {
   //find all forms
   const {formSelector, ...rest} = obj
