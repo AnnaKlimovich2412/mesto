@@ -12,11 +12,13 @@ enableValidation({
 const placeTemplate = document.querySelector('#place-template').content;
 
 function closePopup(popup) {
-  return popup.classList.remove('popup_is-opened');
+  popup.classList.remove('popup_is-opened');
+  document.removeEventListener('keyup', closeByEsc);
 }
 
 function openPopup(popup) {
-  return popup.classList.add('popup_is-opened');
+  popup.classList.add('popup_is-opened');
+  document.addEventListener('keyup', closeByEsc);
 }
 
 /*Edit Profile*/
@@ -54,12 +56,13 @@ formEditProfile.addEventListener('submit', (evt) => {
   formEditProfile.reset();
 });
 
-document.addEventListener('keyup', (evt) => {
+//close by esc
+const closeByEsc = function (evt) {
   if (evt.key === 'Escape') {
-    let popup = document.querySelector('.popup_is-opened')
+    const popup = document.querySelector('.popup_is-opened')
     closePopup(popup);
   }
-})
+}
 
 /*New Place*/
 
@@ -118,8 +121,8 @@ function createCard(prop) {
 function addCard(evt) {
   evt.preventDefault();
   elementsContainer.prepend(createCard({link: inputImage.value, name: inputPlace.value}));
-  closePopup(popupPlace);
   formPlace.reset();
+  closePopup(popupPlace);
 }
 
 /*Initial places grid*/
@@ -142,8 +145,6 @@ const popupImageLink = popupImage.querySelector('.popup__img');
 const popupImageName = popupImage.querySelector('.popup__label');
 const popupImageCloseBtn = popupImage.querySelector('.popup__close-button');
 
-
-
 //popup open
 function openImagePopup(link, name) {
   openPopup(popupImage);
@@ -156,10 +157,14 @@ popupImageCloseBtn.addEventListener('click', () => {
   closePopup(popupImage);
 })
 
-//popup closing by clicking on the background
-popupImage.addEventListener('click', (evt) => {
-  if (evt.target !== popupImageLink && evt.target !== popupImageName) {
-    closePopup(popupImage);
-  }
+//popup close by click on overlay
+const popups = Array.from(document.querySelectorAll('.popup'));
+
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if(evt.target === popup) {
+      closePopup(popup);
+    }
+  })
 })
 

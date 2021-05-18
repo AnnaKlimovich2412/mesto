@@ -52,7 +52,6 @@ const setEventListeners = (formElement, config) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       // check input is valid
-      // checkPasswordConfirm(formElement);
       checkInputValidity(formElement, inputElement, restConfig);
       toggleButtonState(buttonElement, inputList, restConfig);
     });
