@@ -1,3 +1,13 @@
+//page validation
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__field',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__field_type_error',
+  inputErrorActive: 'popup__field-error_visible'
+});
+
 // shared
 const placeTemplate = document.querySelector('#place-template').content;
 
@@ -33,8 +43,8 @@ openEditProfileButton.addEventListener("click", () => {
 });
 
 closeEditProfileButton.addEventListener('click', () => {
-  closePopup(popupProfileEdit)
-})
+  closePopup(popupProfileEdit);
+  })
 
 formEditProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -43,6 +53,13 @@ formEditProfile.addEventListener('submit', (evt) => {
   closePopup(popupProfileEdit);
   formEditProfile.reset();
 });
+
+document.addEventListener('keyup', (evt) => {
+  if (evt.key === 'Escape') {
+    let popup = document.querySelector('.popup_is-opened')
+    closePopup(popup);
+  }
+})
 
 /*New Place*/
 
@@ -57,8 +74,13 @@ openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
 });
 
-closePopupPlaceButton.addEventListener('click', () => {
+function closeAndResetPopUp() {
   closePopup(popupPlace);
+  formPlace.reset();
+}
+
+closePopupPlaceButton.addEventListener('click', () => {
+  closeAndResetPopUp()
 })
 
 // popup form fields
@@ -118,6 +140,9 @@ renderInitialCards();
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageLink = popupImage.querySelector('.popup__img');
 const popupImageName = popupImage.querySelector('.popup__label');
+const popupImageCloseBtn = popupImage.querySelector('.popup__close-button');
+
+
 
 //popup open
 function openImagePopup(link, name) {
@@ -127,7 +152,14 @@ function openImagePopup(link, name) {
   popupImageName.textContent = name;
 }
 //popup close
-popupImage.querySelector('.popup__close-button').addEventListener('click', () => {
+popupImageCloseBtn.addEventListener('click', () => {
   closePopup(popupImage);
+})
+
+//popup closing by clicking on the background
+popupImage.addEventListener('click', (evt) => {
+  if (evt.target !== popupImageLink && evt.target !== popupImageName) {
+    closePopup(popupImage);
+  }
 })
 
