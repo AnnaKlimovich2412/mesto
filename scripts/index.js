@@ -75,6 +75,14 @@ const formPlace = popupPlace.querySelector('.popup__form_type_place');
 // listeners
 openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
+  enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__field',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
+    inputErrorClass: 'popup__field_type_error',
+    inputErrorActive: 'popup__field-error_visible'
+  });
 });
 
 function closeAndResetPopUp() {
