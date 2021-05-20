@@ -43,7 +43,6 @@ const inputProfession = popupProfileEdit.querySelector('.popup__field_type_profe
 openEditProfileButton.addEventListener("click", () => {
   // У тебя тут хитро
   openPopup(popupProfileEdit);
-  hideInputError(formPlace, inputImage, validation);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
       });
