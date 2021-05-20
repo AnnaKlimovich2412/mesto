@@ -1,14 +1,16 @@
 //page validation
-enableValidation({
+
+const validation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__field_type_error',
   inputErrorActive: 'popup__field-error_visible'
-});
+}
 
-// shared
+enableValidation(validation);
+
 const placeTemplate = document.querySelector('#place-template').content;
 
 function closePopup(popup) {
@@ -39,10 +41,12 @@ const inputProfession = popupProfileEdit.querySelector('.popup__field_type_profe
 
 // listeners
 openEditProfileButton.addEventListener("click", () => {
+  // У тебя тут хитро
   openPopup(popupProfileEdit);
+  hideInputError(formPlace, inputImage, validation);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
-});
+      });
 
 closeEditProfileButton.addEventListener('click', () => {
   closePopup(popupProfileEdit);
@@ -50,11 +54,16 @@ closeEditProfileButton.addEventListener('click', () => {
 
 formEditProfile.addEventListener('submit', (evt) => {
   evt.preventDefault();
+  submitProfile();
+});
+
+//submit profile
+const submitProfile = function () {
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputProfession.value;
   closePopup(popupProfileEdit);
   formEditProfile.reset();
-});
+}
 
 //close by esc
 const closeByEsc = function (evt) {
@@ -75,14 +84,7 @@ const formPlace = popupPlace.querySelector('.popup__form_type_place');
 // listeners
 openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__field',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_disabled',
-    inputErrorClass: 'popup__field_type_error',
-    inputErrorActive: 'popup__field-error_visible'
-  });
+  formPlace.reset();
 });
 
 function closeAndResetPopUp() {
@@ -91,7 +93,7 @@ function closeAndResetPopUp() {
 }
 
 closePopupPlaceButton.addEventListener('click', () => {
-  closeAndResetPopUp()
+  closeAndResetPopUp();
 })
 
 // popup form fields

@@ -2,11 +2,21 @@ const hideInputError = (formElement, inputElement, config) => {
   // hide error
   // find error element
   const { inputErrorClass, inputErrorActive } = config;
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass);
-  errorElement.classList.remove(inputErrorActive);
-  errorElement.textContent = '';
+
+  const errorElements = formElement.querySelectorAll(`#${inputElement.id}-error`);
+  errorElements.forEach(el => {
+    el.classList.remove(inputErrorClass)
+    el.textContent = ''
+  })
+  const inputElements = formElement.querySelectorAll(`#${inputElement.id}`);
+  inputElements.forEach(el => {
+    el.classList.remove(inputErrorActive)
+  })
+  // inputElement.classList.remove(inputErrorClass);
+  // errorElement.classList.remove(inputErrorActive);
+  // errorElement.textContent = '';
 }
+
 
 const showInputError = (formElement, inputElement, config) => {
   // show error
