@@ -102,7 +102,6 @@ closePopupPlaceButton.addEventListener('click', () => {
 // popup form fields
 const inputPlace = formPlace.querySelector('.popup__field_type_place');
 const inputImage = formPlace.querySelector('.popup__field_type_link');
-const inputs = Array.from(formPlace.querySelectorAll('.popup__field'));
 
 formPlace.addEventListener('submit', addCard);
 
