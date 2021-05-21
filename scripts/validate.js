@@ -12,11 +12,7 @@ const hideInputError = (formElement, inputElement, config) => {
   inputElements.forEach(el => {
     el.classList.remove(inputErrorActive)
   })
-  // inputElement.classList.remove(inputErrorClass);
-  // errorElement.classList.remove(inputErrorActive);
-  // errorElement.textContent = '';
 }
-
 
 const showInputError = (formElement, inputElement, config) => {
   // show error

@@ -5,7 +5,7 @@ const validation = {
   inputSelector: '.popup__field',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__field_type_error',
+  inputErrorClass: '.popup__field_type_error',
   inputErrorActive: 'popup__field-error_visible'
 }
 
@@ -41,9 +41,9 @@ const inputProfession = popupProfileEdit.querySelector('.popup__field_type_profe
 
 // listeners
 openEditProfileButton.addEventListener("click", () => {
-  // У тебя тут хитро
   openPopup(popupProfileEdit);
-  hideInputError(formPlace, inputImage, validation);
+  hideInputError(formEditProfile, inputName, validation);
+  hideInputError(formEditProfile, inputProfession, validation);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
       });
@@ -84,6 +84,9 @@ const formPlace = popupPlace.querySelector('.popup__form_type_place');
 // listeners
 openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
+  hideInputError(formPlace, inputPlace, validation);
+  hideInputError(formPlace, inputImage, validation);
+  toggleButtonState(openPopupPlaceButton,inputImage);
   formPlace.reset();
 });
 
@@ -99,6 +102,7 @@ closePopupPlaceButton.addEventListener('click', () => {
 // popup form fields
 const inputPlace = formPlace.querySelector('.popup__field_type_place');
 const inputImage = formPlace.querySelector('.popup__field_type_link');
+const inputs = Array.from(formPlace.querySelectorAll('.popup__field'));
 
 formPlace.addEventListener('submit', addCard);
 
