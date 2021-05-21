@@ -80,13 +80,18 @@ const popupPlace = document.querySelector('.popup_type_place');
 const openPopupPlaceButton = document.querySelector('.profile__add-button')
 const closePopupPlaceButton = popupPlace.querySelector('.popup__close-button');
 const formPlace = popupPlace.querySelector('.popup__form_type_place');
+const submitFormButton = popupPlace.querySelector('.popup__save-button');
+const allPopupFields = popupPlace.querySelectorAll('.popup__field')
+// popup form fields
+const inputPlace = formPlace.querySelector('.popup__field_type_place');
+const inputImage = formPlace.querySelector('.popup__field_type_link');
 
 // listeners
 openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
   hideInputError(formPlace, inputPlace, validation);
   hideInputError(formPlace, inputImage, validation);
-  toggleButtonState(openPopupPlaceButton,inputImage);
+  toggleButtonState(submitFormButton,allPopupFields);
   formPlace.reset();
 });
 
@@ -99,9 +104,7 @@ closePopupPlaceButton.addEventListener('click', () => {
   closeAndResetPopUp();
 })
 
-// popup form fields
-const inputPlace = formPlace.querySelector('.popup__field_type_place');
-const inputImage = formPlace.querySelector('.popup__field_type_link');
+
 
 formPlace.addEventListener('submit', addCard);
 
