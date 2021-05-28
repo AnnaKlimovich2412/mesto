@@ -1,4 +1,5 @@
 import Card from './Card.js'
+import FormValidator from './FormValidator.js'
 
 //page validation
 
@@ -11,7 +12,10 @@ const validation = {
   inputErrorActive: 'popup__field-error_visible'
 }
 
-enableValidation(validation);
+const FormNameValidator = new FormValidator(validation,'popup__form_type_name');
+FormNameValidator.enableValidation();
+const FormPlaceValidator = new FormValidator(validation,'popup__form_type_place');
+FormPlaceValidator.enableValidation();
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
@@ -42,8 +46,8 @@ const inputProfession = popupProfileEdit.querySelector('.popup__field_type_profe
 // listeners
 openEditProfileButton.addEventListener("click", () => {
   openPopup(popupProfileEdit);
-  hideInputError(formEditProfile, inputName, validation);
-  hideInputError(formEditProfile, inputProfession, validation);
+  FormNameValidator._hideInputError(formEditProfile, inputName, validation);
+  FormNameValidator._hideInputError(formEditProfile, inputProfession, validation);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
   });
@@ -81,7 +85,8 @@ const openPopupPlaceButton = document.querySelector('.profile__add-button')
 const closePopupPlaceButton = popupPlace.querySelector('.popup__close-button');
 const formPlace = popupPlace.querySelector('.popup__form_type_place');
 const submitFormButton = popupPlace.querySelector('.popup__save-button');
-const allPopupFields = popupPlace.querySelectorAll('.popup__field')
+const allPopupFields = popupPlace.querySelectorAll('.popup__field');
+
 // popup form fields
 const inputPlace = formPlace.querySelector('.popup__field_type_place');
 const inputImage = formPlace.querySelector('.popup__field_type_link');
@@ -89,9 +94,9 @@ const inputImage = formPlace.querySelector('.popup__field_type_link');
 // listeners
 openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
-  hideInputError(formPlace, inputPlace, validation);
-  hideInputError(formPlace, inputImage, validation);
-  toggleButtonState(submitFormButton,allPopupFields);
+  FormPlaceValidator._hideInputError(formPlace, inputPlace, validation);
+  FormPlaceValidator._hideInputError(formPlace, inputImage, validation);
+  FormPlaceValidator._toggleButtonState(submitFormButton,allPopupFields);
   formPlace.reset();
 });
 
@@ -107,7 +112,6 @@ closePopupPlaceButton.addEventListener('click', () => {
 formPlace.addEventListener('submit', addCard);
 
 // add Card and close dialog
-
 
 function addCard(evt) {
   evt.preventDefault();
