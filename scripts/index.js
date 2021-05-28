@@ -1,3 +1,5 @@
+import Card from './Card.js'
+
 //page validation
 
 const validation = {
@@ -10,8 +12,6 @@ const validation = {
 }
 
 enableValidation(validation);
-
-const placeTemplate = document.querySelector('#place-template').content;
 
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
@@ -46,7 +46,7 @@ openEditProfileButton.addEventListener("click", () => {
   hideInputError(formEditProfile, inputProfession, validation);
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
-      });
+  });
 
 closeEditProfileButton.addEventListener('click', () => {
   closePopup(popupProfileEdit);
@@ -104,42 +104,19 @@ closePopupPlaceButton.addEventListener('click', () => {
   closeAndResetPopUp();
 })
 
-
-
 formPlace.addEventListener('submit', addCard);
-
-// create card
-
-function createCard(prop) {
-  const place = placeTemplate.querySelector('.element').cloneNode(true);
-  const image = place.querySelector('.element__img');
-  const title = place.querySelector('.element__title');
-
-  image.src = prop.link;
-  image.alt = prop.name;
-  title.textContent = prop.name;
-
-  place.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_is-active');
-  })
-  place.querySelector('.element__delete').addEventListener('click', function () {
-    place.remove();
-  })
-  image.addEventListener('click', () => {
-    openImagePopup(prop.link, prop.name)
-  });
-
-  return place;
-}
 
 // add Card and close dialog
 
+
 function addCard(evt) {
   evt.preventDefault();
-  elementsContainer.prepend(createCard({link: inputImage.value, name: inputPlace.value}));
+  const newCard = new Card({link: inputImage.value, name: inputPlace.value}, '.place-template');
+  const newCardElement = newCard.createCard();
+  elementsContainer.prepend(newCardElement);
   formPlace.reset();
   closePopup(popupPlace);
-}
+ }
 
 /*Initial places grid*/
 
@@ -149,7 +126,9 @@ const elementsContainer = document.querySelector('.elements');
 /* render initial cards */
 function renderInitialCards() {
   initialCards.forEach((card) => {
-    elementsContainer.append(createCard({link: card.link, name: card.name}));
+    const initialCard = new Card(card,'.place-template');
+    const initialCardElement = initialCard.createCard();
+    elementsContainer.append(initialCardElement);
   })
 }
 
@@ -184,3 +163,4 @@ popups.forEach((popup) => {
   })
 })
 
+export {openImagePopup};
