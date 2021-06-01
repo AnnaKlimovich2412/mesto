@@ -12,7 +12,6 @@ const validation = {
   inputErrorActive: 'popup__field-error_visible'
 }
 
-
 function closePopup(popup) {
   popup.classList.remove('popup_is-opened');
   document.removeEventListener('keyup', closeByEsc);
