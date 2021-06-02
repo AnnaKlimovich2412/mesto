@@ -65,6 +65,11 @@ class FormValidator {
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._inputErrorActive);
   }
+
+  _resetValidation(formElement, inputElement, buttonElement) {
+    this._hideInputError(formElement, inputElement);
+    buttonElement.disabled = true;
+  }
 }
 
 export default FormValidator;

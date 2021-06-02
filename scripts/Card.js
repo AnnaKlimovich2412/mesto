@@ -8,7 +8,7 @@ class Card {
   }
 
   _getTemplate(){
-    const placeTemplate = document.querySelector('#place-template').content;
+    const placeTemplate = document.querySelector(this._cardSelector).content;
     const cardElement = placeTemplate.querySelector('.element').cloneNode(true);
 
     return cardElement;
@@ -26,8 +26,8 @@ class Card {
       }
 
   _setEventListeners(){
-    this._element.querySelector('.element__like').addEventListener('click', function (evt) {
-      evt.target.classList.toggle('element__like_is-active');
+    this._element.querySelector('.element__like').addEventListener('click', (evt) => {
+      this._toggleLike(evt);
     })
     this._element.querySelector('.element__delete').addEventListener('click', () => {
       this._removeElement()
@@ -39,6 +39,10 @@ class Card {
 
   _removeElement(){
     this._element.remove();
+  }
+
+  _toggleLike(evt) {
+    evt.target.classList.toggle('element__like_is-active');
   }
  }
 

@@ -39,13 +39,15 @@ const inputName = popupProfileEdit.querySelector('.popup__field_type_name');
 const inputProfession = popupProfileEdit.querySelector('.popup__field_type_profession');
 
 const formNameValidator = new FormValidator(validation, '.popup__form_type_name');
+formNameValidator.enableValidation();
 
 // listeners
 openEditProfileButton.addEventListener("click", () => {
   openPopup(popupProfileEdit);
-  formNameValidator.enableValidation();
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
+  formNameValidator._resetValidation(formEditProfile, inputName, validation.submitButtonSelector);
+  formNameValidator._resetValidation(formEditProfile, inputProfession, validation.submitButtonSelector);
   });
 
 closeEditProfileButton.addEventListener('click', () => {
@@ -86,15 +88,16 @@ const inputPlace = formPlace.querySelector('.popup__field_type_place');
 const inputImage = formPlace.querySelector('.popup__field_type_link')
 
 const formPlaceValidator = new FormValidator(validation,'.popup__form_type_place');
+formPlaceValidator.enableValidation();
 
 // listeners
 openPopupPlaceButton.addEventListener("click", () => {
   openPopup(popupPlace);
-  formPlaceValidator.enableValidation()
   formPlace.reset();
-});
+  });
 
 function closeAndResetPopUp() {
+  closePopup(popupPlace);
   closePopup(popupPlace);
   formPlace.reset();
 }
@@ -109,7 +112,7 @@ formPlace.addEventListener('submit', addCard);
 
 function addCard(evt) {
   evt.preventDefault();
-  const newCardElement = new Card({link: inputImage.value, name: inputPlace.value}, '.place-template').createCard();
+  const newCardElement = new Card({link: inputImage.value, name: inputPlace.value}, '#place-template').createCard();
   elementsContainer.prepend(newCardElement);
   formPlace.reset();
   closePopup(popupPlace);
@@ -123,7 +126,7 @@ const elementsContainer = document.querySelector('.elements');
 /* render initial cards */
 function renderInitialCards() {
   initialCards.forEach((card) => {
-    const initialCardElement = new Card(card,'.place-template').createCard();
+    const initialCardElement = new Card(card,'#place-template').createCard();
     elementsContainer.append(initialCardElement);
   })
 }
