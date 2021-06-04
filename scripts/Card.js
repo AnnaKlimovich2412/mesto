@@ -39,6 +39,7 @@ class Card {
 
   _removeElement(){
     this._element.remove();
+    this._element = null;
   }
 
   _toggleLike(evt) {
