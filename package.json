@@ -1,0 +1,25 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "> ##1. Данный проект реализует профиль с фотографиями мест > ##2. В данной проектной работе я использовала адаптивную верстку, формы для заполнения, реализовала возможность добавления и удаления новых карточек, лайки > ##3. https://annaklimovich2412.github.io/mesto/",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaKlimovich2412/mesto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnaKlimovich2412/mesto/issues"
+  },
+  "homepage": "https://github.com/AnnaKlimovich2412/mesto#readme",
+  "dependencies": {
+    "webpack": "^5.39.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
