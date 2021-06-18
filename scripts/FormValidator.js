@@ -27,7 +27,7 @@ class FormValidator {
       });
     })
 
-    // set initial button state
+    // set initialCards button state
     this._toggleButtonState();
   }
 

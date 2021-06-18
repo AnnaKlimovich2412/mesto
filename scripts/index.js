@@ -1,6 +1,7 @@
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
-
+import '../pages/index.css'
+import {initialCards} from './initial-cards.js'
 //page validation
 
 const validation = {
@@ -103,7 +104,7 @@ function addCard(evt) {
   closePopup(popupPlace);
 }
 
-// render initial cards
+// render initialCards cards
 function renderInitialCards() {
   initialCards.forEach((card) => {
     const initialCardElement = new Card(card,'#place-template').createCard();
