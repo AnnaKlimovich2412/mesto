@@ -1,10 +1,11 @@
 import {openImagePopup} from "./index.js";
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._link = data.link;
     this._name = data.name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate(){
@@ -30,9 +31,7 @@ class Card {
     this._element.querySelector('.element__delete').addEventListener('click', () => {
       this._removeElement()
     })
-    this._element.querySelector('.element__img').addEventListener('click', () => {
-      openImagePopup(this._link, this._name)
-    });
+    this._element.querySelector('.element__img').addEventListener('click', this._handleCardClick);
   }
 
   _removeElement(){
