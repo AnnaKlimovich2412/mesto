@@ -5,16 +5,17 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._submitCallback = submitFormCallback;
     this._popupForm = this._popup.querySelector('.popup__form');
-    this._popupFields = this._popup.querySelectorAll('.popup__field')
-
+    this._inputPlace = document.querySelector('.popup__field_type_place');
+    this._inputImage = document.querySelector('.popup__field_type_link');
   }
 
   _getInputValues() {
-
+    let newPlace = {};
+    if (this._inputImage.value && this._inputPlace.value) {
+      newPlace = {link: this._inputImage.value, name: this._inputPlace.value}
+    }
+    return newPlace;
   }
-
-  //TODO Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
-
 
  setEventListeners() {
    super.setEventListeners();

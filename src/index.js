@@ -73,15 +73,11 @@ buttonOpenPopupProfile.addEventListener("click", () => {
 
 const popupPlace = new PopupWithForm('.popup_type_place', (evt) => {
   evt.preventDefault();
-  let newPlace = {};
-  if (inputImage.value && inputPlace.value) {
-    newPlace = {link: inputImage.value, name: inputPlace.value}
-  }
+  const newPlace = popupPlace._getInputValues();
   const newCardElement = new Card(newPlace, '#place-template', ()=>{
     const popupImage = new PopupWithImage('.popup_type_image');
     popupImage.openPopup(newPlace);
     popupImage.setEventListeners();
-    console.log(inputImage.value);
     }).createCard();
   section.addItem(newCardElement);
   popupPlace.closePopup()
