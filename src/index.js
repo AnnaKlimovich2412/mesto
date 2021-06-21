@@ -1,10 +1,11 @@
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
-import '../pages/index.css'
+import './pages/index.css'
 import {initialCards} from './initial-cards.js'
 import {PopupWithImage} from './PopupWithImage'
 import {PopupWithForm} from "./PopupWithForm"
 import {Section} from "./Section"
+import {UserInfo} from "./UserInfo";
 //page validation
 
 const validation = {
@@ -15,35 +16,17 @@ const validation = {
   inputErrorClass: '.popup__field_type_error',
   inputErrorActive: 'popup__field-error_visible'
 }
-/*Profile*/
+/*Const*/
 
 // profile information
-const profileName = document.querySelector('.profile__name');
-const profileProfession = document.querySelector('.profile__profession');
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const inputName = document.querySelector('.popup__field_type_name');
-const inputProfession = document.querySelector('.popup__field_type_profession');
 
 /*Popup place*/
-
 const buttonOpenPopupPlace = document.querySelector('.profile__add-button')
 const inputPlace = document.querySelector('.popup__field_type_place');
 const inputImage = document.querySelector('.popup__field_type_link');
 
-/*Common*/
-
-//const elementsContainer = document.querySelector('.elements');
-
-/*Popup image*/
-
-//popup image
-const popupImage = document.querySelector('.popup_type_image');
-const popupImageLink = popupImage.querySelector('.popup__img');
-const popupImageName = popupImage.querySelector('.popup__label');
-const buttonClosePopupImage = popupImage.querySelector('.popup__close-button');
-
 /*Validation*/
-
 const formNameValidator = new FormValidator(validation, '.popup__form_type_name');
 const formPlaceValidator = new FormValidator(validation,'.popup__form_type_place');
 
@@ -72,17 +55,17 @@ section.renderItems();
 
 /*PopupProfile*/
 
+const userInfo = new UserInfo({name:'.profile__name',profession:'.profile__profession'});
+
 const popupProfile = new PopupWithForm('.popup_type_edit', (evt)=>{
   evt.preventDefault();
-  profileName.textContent = inputName.value;
-  profileProfession.textContent = inputProfession.value;
+  userInfo.getUserInfo();
 })
 
 buttonOpenPopupProfile.addEventListener("click", () => {
   popupProfile.openPopup();
   popupProfile.setEventListeners();
-  inputName.value = profileName.textContent;
-  inputProfession.value = profileProfession.textContent;
+  userInfo.setUserInfo();
   formNameValidator._resetValidation();
 });
 

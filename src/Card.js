@@ -1,4 +1,3 @@
-import {openImagePopup} from "./index.js";
 
 class Card {
   constructor(data, cardSelector, handleCardClick) {
