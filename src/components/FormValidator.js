@@ -20,7 +20,7 @@ class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
 
-      inputElement.addEventListener('keyup', () => {
+      inputElement.addEventListener('input', () => {
         // check input is valid
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
@@ -61,7 +61,7 @@ class FormValidator {
     errorElement.classList.add(this._inputErrorActive);
   }
 
-  _resetValidation() {
+  resetValidation() {
     this._inputList.forEach(el => this._hideInputError(el));
     this._toggleButtonState()
   }
