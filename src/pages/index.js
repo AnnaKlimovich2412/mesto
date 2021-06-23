@@ -80,7 +80,7 @@ buttonOpenPopupProfile.addEventListener("click", () => {
 
 const popupPlace = new PopupWithForm('.popup_type_place', (evt) => {
   evt.preventDefault();
-  const newPlace = popupPlace._getInputValues();
+  const newPlace = popupPlace.getInputValues();
   createNewCard(newPlace);
   popupPlace.closePopup();
 });
