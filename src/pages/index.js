@@ -1,11 +1,12 @@
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import './index.css'
-import {initialCards} from '../utils/initial-cards.js'
+//import {initialCards} from '../utils/initial-cards.js'
 import {PopupWithImage} from '../components/PopupWithImage'
 import {PopupWithForm} from "../components/PopupWithForm"
 import {Section} from "../components/Section"
 import {UserInfo} from "../components/UserInfo";
+import {Api} from "../components/Api";
 
 //page validation
 
@@ -18,6 +19,28 @@ const validation = {
   inputErrorActive: 'popup__field-error_visible'
 }
 /*Const*/
+
+const options = {
+  url:'https://mesto.nomoreparties.co/v1/cohort-25/cards/',
+  headers: {
+    'Content-Type' : 'application/json',
+    'authorization':'da853ede-d03b-4f91-b21b-ffe003cd021a'
+  }
+}
+
+const api = new Api(options);
+api.listItems()
+  .then(data => {
+    console.log(data)
+    const section = new Section({
+        data: data,
+        renderer: (item) => {
+          createNewCard(item)
+        }
+      },
+      '.elements');
+
+  })
 
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
 const buttonOpenPopupPlace = document.querySelector('.profile__add-button');
@@ -40,13 +63,7 @@ const createNewCard = (card) => {
   section.addItem(CardElement)
 }
 
-const section = new Section({
-    data: initialCards,
-    renderer: (item) => {
-      createNewCard(item)
-    }
-  },
-  '.elements');
+
 
 const popupProfile = new PopupWithForm('.popup_type_edit', (data) => {
   userInfo.setUserInfo(data);
