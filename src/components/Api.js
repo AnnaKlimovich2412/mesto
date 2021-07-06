@@ -1,12 +1,16 @@
 export class Api {
-  constructor(config) {
+    constructor(config) {
     this.url = config.url;
     this.headers = config.headers;
+    this.method = config.method;
+    this.body = config.body
   }
 
-  listItems() {
+  processData() {
     return fetch (this.url, {
-      headers: this.headers
+      method: this.method,
+      headers: this.headers,
+      body: this.body
     })
       .then( res => {
         if (res.ok) {
@@ -18,5 +22,4 @@ export class Api {
         console.error(`http method failed to proceed with error ${err}`)
       })
   }
-
 }
