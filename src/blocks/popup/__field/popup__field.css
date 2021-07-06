@@ -16,10 +16,17 @@
   outline: none;
 }
 
+.popup__field:first-child{
+  margin-top: 16px;
+}
+
 @media (max-width: 505px) {
   .popup__field {
     margin-left: 22px;
     margin-right: 22px;
     max-width: 238px;
+  }
+  .popup__field:first-child{
+    margin-top: 0;
   }
 }
