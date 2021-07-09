@@ -4,6 +4,7 @@
   grid-column-gap: 30px;
   align-items: center;
   margin: auto;
+  position: relative;
 }
 
 @media (max-width: 983px) {

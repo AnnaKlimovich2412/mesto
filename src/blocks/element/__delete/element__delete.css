@@ -9,6 +9,7 @@
   top: 18px;
   right: 15px;
   outline: none;
+  visibility: visible;
 }
 
 .element__delete:hover {

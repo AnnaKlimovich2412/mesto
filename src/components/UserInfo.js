@@ -8,14 +8,19 @@ export class UserInfo {
     this._data = {
       name : this._profileName.textContent,
       about : this._profileAbout.textContent,
-      avatar : this._profileAvatar.src
     };
     return this._data;
+  }
+
+  getUserID () {
+    return this._id;
   }
 
   setUserInfo (data) {
     this._profileName.textContent = data.name;
     this._profileAbout.textContent = data.about;
+    this._profileAvatar.src = data.avatar
+    this._id = data._id;
   }
 }
 

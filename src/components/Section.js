@@ -5,10 +5,14 @@ export class Section {
   }
 
   renderItems(cards) {
-    cards.forEach(item => this._renderer(item))
+    cards.forEach(card => this._renderer(card))
   }
 
-  addItem(element) {
-    this._container.prepend(element);
+  clearContainer() {
+    this._container.innerHTML = '';
+  }
+
+  addItem(element, method) {
+    this._container[method](element);
   }
 }

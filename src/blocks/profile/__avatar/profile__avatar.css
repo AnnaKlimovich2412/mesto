@@ -3,6 +3,7 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  position: relative;
 }
 
 @media (max-width: 983px) {

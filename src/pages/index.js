@@ -1,9 +1,9 @@
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import './index.css'
-//import {initialCards} from '../utils/initial-cards.js'
 import {PopupWithImage} from '../components/PopupWithImage'
 import {PopupWithForm} from "../components/PopupWithForm"
+import {PopupWithDeleteConfirmation} from "../components/PopupWithDeleteConfirmation"
 import {Section} from "../components/Section"
 import {UserInfo} from "../components/UserInfo";
 import {Api} from "../components/Api";
@@ -18,124 +18,134 @@ const validation = {
   inputErrorClass: '.popup__field_type_error',
   inputErrorActive: 'popup__field-error_visible'
 }
+
 /*Const*/
-
-const options = {
-  url:'https://mesto.nomoreparties.co/v1/cohort-25/cards/',
-  headers: {
-    'Content-Type' : 'application/json',
-    'authorization':'da853ede-d03b-4f91-b21b-ffe003cd021a'
-  }
-}
-
-const profileInfo = {
-  url:'https://nomoreparties.co/v1/cohort-25/users/me ',
-  headers: {
-    'Content-Type' : 'application/json',
-    'authorization':'da853ede-d03b-4f91-b21b-ffe003cd021a'
-  }
-}
-
-const newProfileInfo = {
-  url:'https://nomoreparties.co/v1/cohort-25/users/me ',
-  method:'PATCH',
-   headers: {
-    'Content-Type' : 'application/json',
-    'authorization':'da853ede-d03b-4f91-b21b-ffe003cd021a'
-  }
-  }
-
-const newCard = {
-  url:'https://mesto.nomoreparties.co/v1/cohort-25/cards',
-  method:'POST',
-  headers: {
-    'Content-Type' : 'application/json',
-    'authorization':'da853ede-d03b-4f91-b21b-ffe003cd021a'
-  }
-}
-
-const loadCards = new Api(options);
-const loadProfileInfo = new Api(profileInfo);
-
-
-const section = new Section({
-    renderer: (item) => {
-      createNewCard(item)
-    }
-  },
-  '.elements');
-
-loadProfileInfo.processData()
-  .then(data => {
-    userInfo.setUserInfo(data);
-  })
-
-loadCards.processData()
-  .then(data => {
-    section.renderItems(data);
-  })
-
 
 const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
 const buttonOpenPopupPlace = document.querySelector('.profile__add-button');
+const buttonOpenPopupAvatar = document.querySelector('.profile__avatar-edit')
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 const profileAvatar = document.querySelector('.profile__avatar');
 const inputName = document.querySelector('.popup__field_type_name');
 const inputProfession = document.querySelector('.popup__field_type_profession');
 
+/*functions*/
+
+function createNewCard(data) {
+  const cardElement = new Card(data, '#place-template', {
+    handleCardClick:() => {popupImage.openPopup(data)},
+    handleDeleteClick:() => {popupDeleteConfirm.openPopup(data)},
+    profileId: userInfo.getUserID()
+  }).createCard();
+  return cardElement
+}
+
+/*create classes*/
+
+const section = new Section({
+    renderer: (card) => {
+      const cardElement = createNewCard(card);
+      section.addItem(cardElement, 'append')
+    }
+  },
+  '.elements');
+
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-25/', 'da853ede-d03b-4f91-b21b-ffe003cd021a')
+
+const cardsAndUser = () => {
+  Promise.all([api.getProfileInfo(), api.getCards()])
+    .then(([user, cards]) => {
+      userInfo.setUserInfo(user);
+      section.clearContainer();
+      section.renderItems(cards);
+    })
+    .catch(err => console.log(err))
+}
+
+cardsAndUser();
 
 const formNameValidator = new FormValidator(validation, '.popup__form_type_name');
 const formPlaceValidator = new FormValidator(validation, '.popup__form_type_place');
+const formAvatarValidator = new FormValidator(validation,'.popup__form_type_avatar');
 
-const popupImage = new PopupWithImage('.popup_type_image');
 const userInfo = new UserInfo({name: profileName, about: profileProfession, avatar: profileAvatar});
 
-const createNewCard = (card) => {
-  const CardElement = new Card(card, '#place-template', () => {
-    popupImage.openPopup(card);
-  }).createCard();
-  section.addItem(CardElement)
-}
-
 const popupProfile = new PopupWithForm('.popup_type_edit', (data) => {
-  userInfo.setUserInfo(data);
-  const patchProfileInfo = new Api({...newProfileInfo, body: JSON.stringify(data)})
-  patchProfileInfo.processData()
-    .then()
-  popupProfile.closePopup();
+  api.setProfileInfo(data)
+    .then(res => {
+      userInfo.setUserInfo(res);
+      popupProfile.closePopup();
+    })
 })
 
 const popupPlace = new PopupWithForm('.popup_type_place',
-    (data) => {
-  const postCard = new Api({...newCard, body:JSON.stringify(data)})
-    postCard.processData()
-      .then()
-  createNewCard(data);
-  console.log(postCard)
-});
+  (data) => {
+    api.postCard({name: data.name, link: data.link})
+      .then(res => {
+        const card = createNewCard(res);
+        section.addItem(card, 'prepend');
+        // TODO
+        popupPlace.closePopup()
+      })
+      .catch(err => console.log(err))
+  })
+
+const popupImage = new PopupWithImage('.popup_type_image');
+
+const popupDeleteConfirm = new PopupWithDeleteConfirmation('.popup_type_confirm',(data) => {
+  api.deleteCard(data)
+      .then(() => {
+        popupDeleteConfirm.closePopup();
+        cardsAndUser()
+      })
+      .catch(err => console.log(err))
+  });
+
+const popupAvatar = new PopupWithForm('.popup_type_avatar',
+  (data) => {
+    api.changeAvatar(data.avatar)
+      .then(res => {
+        userInfo.setUserInfo(res);
+        popupAvatar.closePopup()
+      })
+      .catch(err => console.log(err))
+  }
+)
 
 popupImage.setEventListeners();
 popupProfile.setEventListeners();
 popupPlace.setEventListeners();
+popupDeleteConfirm.setEventListeners();
+popupAvatar.setEventListeners();
 formNameValidator.enableValidation();
 formPlaceValidator.enableValidation();
+formAvatarValidator.enableValidation();
 
 buttonOpenPopupProfile.addEventListener("click", () => {
-  popupProfile.openPopup();
-  const currentUser = userInfo.getUserInfo();
+  const currentUser = userInfo.getUserInfo()
   inputName.value = currentUser.name;
   inputProfession.value = currentUser.about;
-  //inputAvatar.src =
   formNameValidator.resetValidation();
+  popupProfile.openPopup();
 });
 
-buttonOpenPopupPlace.addEventListener('click', () => {
-  popupPlace.openPopup();
-  formPlaceValidator.resetValidation();
+buttonOpenPopupAvatar.addEventListener('click', () => {
+  popupAvatar.openPopup();
 })
 
-section.renderItems();
+buttonOpenPopupPlace.addEventListener('click', () => {
+  formPlaceValidator.resetValidation();
+  popupPlace.openPopup();
+})
+
+
+
+
+
+
+
+
 
 
 
