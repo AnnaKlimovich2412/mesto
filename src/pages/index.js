@@ -83,15 +83,21 @@ const formAvatarValidator = new FormValidator(validation,'.popup__form_type_avat
 const userInfo = new UserInfo({name: profileName, about: profileProfession, avatar: profileAvatar});
 
 const popupProfile = new PopupWithForm('.popup_type_edit', (data) => {
+  popupProfile.renderLoading(true);
   api.setProfileInfo(data)
     .then(res => {
       userInfo.setUserInfo(res);
       popupProfile.closePopup();
     })
+    .catch(err => console.log(err))
+    .finally(() => {
+      popupProfile.renderLoading(false);
+    })
 })
 
 const popupPlace = new PopupWithForm('.popup_type_place',
   (data) => {
+    popupPlace.renderLoading(true)
     api.postCard({name: data.name, link: data.link})
       .then(res => {
         const card = createNewCard(res);
@@ -99,6 +105,9 @@ const popupPlace = new PopupWithForm('.popup_type_place',
         popupPlace.closePopup()
       })
       .catch(err => console.log(err))
+      .finally(() => {
+        popupPlace.renderLoading(false)
+      })
   })
 
 const popupImage = new PopupWithImage('.popup_type_image');
@@ -114,14 +123,20 @@ const popupDeleteConfirm = new PopupWithDeleteConfirmation('.popup_type_confirm'
 
 const popupAvatar = new PopupWithForm('.popup_type_avatar',
   (data) => {
+    popupAvatar.renderLoading(true);
     api.changeAvatar(data.avatar)
       .then(res => {
         userInfo.setUserInfo(res);
         popupAvatar.closePopup()
       })
       .catch(err => console.log(err))
+      .finally(() => {
+
+        popupAvatar.renderLoading(false);
+      })
   }
 )
+
 
 popupImage.setEventListeners();
 popupProfile.setEventListeners();
