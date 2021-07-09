@@ -79,5 +79,30 @@ export class Api {
     })
       .then(this._check)
   }
+
+  putLike (card) {
+    const cardID = card._cardId;
+    return fetch(`${this._url}cards/likes/${cardID}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': this._token
+      }
+    })
+      .then(this._check)
+  }
+
+  deleteLike (card) {
+    const cardID = card._cardId;
+    return fetch(`${this._url}cards/likes/${cardID}`, {
+      method:'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': this._token
+      }
+    })
+      .then(this._check)
+  }
 }
+
 

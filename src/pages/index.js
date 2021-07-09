@@ -33,12 +33,23 @@ const inputProfession = document.querySelector('.popup__field_type_profession');
 /*functions*/
 
 function createNewCard(data) {
-  const cardElement = new Card(data, '#place-template', {
+  const card = new Card(data, '#place-template', {
     handleCardClick:() => {popupImage.openPopup(data)},
     handleDeleteClick:() => {popupDeleteConfirm.openPopup(data)},
-    profileId: userInfo.getUserID()
-  }).createCard();
-  return cardElement
+    handleLikeClick:() => {
+      if (card.isLiked()) {
+       api.deleteLike(card)
+          .then((res) => {card.updateLike(res)})
+          .catch((err) => {console.log(err)})
+      } else {
+        api.putLike(card)
+         .then((res) => {card.updateLike(res)})
+         .catch((err) => {console.log(err)})
+      }},
+        profileId: userInfo.getUserID()
+  })
+  const cardElement = card.createCard();
+  return cardElement;
 }
 
 /*create classes*/
@@ -85,7 +96,6 @@ const popupPlace = new PopupWithForm('.popup_type_place',
       .then(res => {
         const card = createNewCard(res);
         section.addItem(card, 'prepend');
-        // TODO
         popupPlace.closePopup()
       })
       .catch(err => console.log(err))
