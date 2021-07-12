@@ -16,7 +16,6 @@ class Card {
 
   }
 
-
   _getTemplate(){
     const placeTemplate = document.querySelector(this._cardSelector).content;
     return placeTemplate.querySelector('.element').cloneNode(true);
@@ -25,14 +24,16 @@ class Card {
   createCard() {
     this._element = this._getTemplate();
     this._likeElement = this._element.querySelector('.element__like');
+    this._imgElement = this._element.querySelector('.element__img');
+    this._counterElement = this._element.querySelector('.element__like-counter');
     this._setEventListeners();
 
-    this._element.querySelector('.element__img').src = this._link;
-    this._element.querySelector('.element__img').alt = this._element.querySelector('.element__title').textContent = this._name;
+    this._imgElement.src = this._link;
+    this._imgElement.alt = this._element.querySelector('.element__title').textContent = this._name;
 
     this._likes ?
-      this._element.querySelector('.element__like-counter').textContent = this._likes.length
-      : this._element.querySelector('.element__like-counter').textContent = 0;
+      this._counterElement.textContent = this._likes.length
+      : this._counterElement.textContent = 0;
 
     if (this._likes.some(like => like._id === this._profileId)) {
       this._likeElement.classList.add('element__like_is-active');
@@ -46,16 +47,16 @@ class Card {
   }
 
   _setEventListeners(){
-    this._element.querySelector('.element__like').addEventListener('click', this._likeCard.bind(this));
+    this._likeElement.addEventListener('click', this._likeCard.bind(this));
     this._element.querySelector('.element__delete').addEventListener('click', this._handleDeleteClick);
-    this._element.querySelector('.element__img').addEventListener('click', this._handleCardClick);
+    this._imgElement.addEventListener('click', this._handleCardClick);
   }
 
 
   _likeCard() {
     this._handleLikeClick();
-    this._element.querySelector('.element__like').classList.toggle('element__like_is-active');
-    
+    this._likeElement.classList.toggle('element__like_is-active');
+
   }
 
   isLiked () {
@@ -70,7 +71,7 @@ class Card {
     this._element.querySelector('.element__like-counter').textContent = res.likes.length
   }
 
- }
+}
 
 export default Card;
 

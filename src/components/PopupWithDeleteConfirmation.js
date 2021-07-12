@@ -7,9 +7,14 @@ export class PopupWithDeleteConfirmation extends Popup {
     this._submitCallback = submitCallback;
   }
 
-  openPopup (card) {
+  openPopup (card, domElement) {
     super.openPopup();
     this._card = card;
+    this._element = domElement
+  }
+
+  deleteDomElement() {
+    this._element.remove();
   }
 
   setEventListeners() {
@@ -17,7 +22,6 @@ export class PopupWithDeleteConfirmation extends Popup {
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitCallback(this._card)
-      this.closePopup()
     });
   }
 }

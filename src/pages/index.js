@@ -7,35 +7,15 @@ import {PopupWithDeleteConfirmation} from "../components/PopupWithDeleteConfirma
 import {Section} from "../components/Section"
 import {UserInfo} from "../components/UserInfo";
 import {Api} from "../components/Api";
+import {validation, buttonOpenPopupPlace, buttonOpenPopupProfile, buttonOpenPopupAvatar, profileAvatar, profileName, inputName, profileProfession, inputProfession} from "../utils/constants";
 
-//page validation
-
-const validation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__field',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: '.popup__field_type_error',
-  inputErrorActive: 'popup__field-error_visible'
-}
-
-/*Const*/
-
-const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const buttonOpenPopupPlace = document.querySelector('.profile__add-button');
-const buttonOpenPopupAvatar = document.querySelector('.profile__avatar-edit')
-const profileName = document.querySelector('.profile__name');
-const profileProfession = document.querySelector('.profile__profession');
-const profileAvatar = document.querySelector('.profile__avatar');
-const inputName = document.querySelector('.popup__field_type_name');
-const inputProfession = document.querySelector('.popup__field_type_profession');
 
 /*functions*/
 
 function createNewCard(data) {
   const card = new Card(data, '#place-template', {
-    handleCardClick:() => {popupImage.openPopup(data)},
-    handleDeleteClick:() => {popupDeleteConfirm.openPopup(data)},
+    handleCardClick:() => popupImage.openPopup(data),
+    handleDeleteClick:() => popupDeleteConfirm.openPopup(data, card._element),
     handleLikeClick:() => {
       if (card.isLiked()) {
        api.deleteLike(card)
@@ -64,7 +44,7 @@ const section = new Section({
 
 const api = new Api('https://mesto.nomoreparties.co/v1/cohort-25/', 'da853ede-d03b-4f91-b21b-ffe003cd021a')
 
-const cardsAndUser = () => {
+const getCardsAndUser = () => {
   Promise.all([api.getProfileInfo(), api.getCards()])
     .then(([user, cards]) => {
       userInfo.setUserInfo(user);
@@ -74,7 +54,7 @@ const cardsAndUser = () => {
     .catch(err => console.log(err))
 }
 
-cardsAndUser();
+getCardsAndUser();
 
 const formNameValidator = new FormValidator(validation, '.popup__form_type_name');
 const formPlaceValidator = new FormValidator(validation, '.popup__form_type_place');
@@ -114,9 +94,11 @@ const popupImage = new PopupWithImage('.popup_type_image');
 
 const popupDeleteConfirm = new PopupWithDeleteConfirmation('.popup_type_confirm',(data) => {
   api.deleteCard(data)
-      .then(() => {
-        popupDeleteConfirm.closePopup();
-        cardsAndUser()
+      .then((res) => {
+        if (res.message === 'Пост удалён') {
+          popupDeleteConfirm.deleteDomElement();
+          popupDeleteConfirm.closePopup();
+        }
       })
       .catch(err => console.log(err))
   });
