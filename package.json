@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "rd /s /q dist && webpack",
-    "dev": "webpack serve --open"
+    "dev": "webpack serve --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
   },
   "devDependencies": {
     "css-loader": "^5.2.6",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0"
   }
